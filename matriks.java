@@ -48,6 +48,8 @@ public class matriks {
                 this.mat[i][j] = input.nextInt();
             }
         }
+
+        input.close();
     }
     void tulismatriks(){
         for(int i = 0; i < this.m_brs; i++){
