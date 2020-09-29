@@ -22,27 +22,27 @@ public class app {
 
         switch (currentMenu) {
             case 1:
-                menu.SPL(); // TODO: Implement this procedure
+                menu.SPL();
                 break;
             
             case 2:
-                menu.Determinan(); // TODO: Implement this procedure
+                menu.Determinan();
                 break;
 
             case 3:
-                menu.Inverse(); // TODO: Implement this procedure
+                menu.Inverse();
                 break;
 
             case 4:
-                menu.Interpolasi(); // TODO: Implement this procedure
+                menu.Interpolasi();
                 break;
 
             case 5:
-                menu.Regresi(); // TODO: Implement this procedure
+                menu.Regresi();
                 break;
 
             case 6:
-                menu.Exit(); // TODO: Implement this procedure
+                menu.Exit();
                 break;
         
             default:
