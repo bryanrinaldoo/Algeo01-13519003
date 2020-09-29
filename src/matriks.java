@@ -11,6 +11,8 @@ public class matriks {
         matriks m = new matriks();
         m.tulismatriks();
         System.out.println("Determinan : "+ m.determinan(m));
+        matriks m2 = m.submat(m,0,0);
+        m2.tulismatriks();
     }
     
     public matriks (int m, int n){
@@ -93,8 +95,53 @@ public class matriks {
             else {
                 plusmin=1;
             }
+            
             hasil = hasil + ( plusmin * this.mat[0][i] * (mkecil.determinan(mkecil)) );   
         }
         return (hasil);
     }
+    // transpose 
+    public matriks transpose (matriks M){
+        matriks trans = new matriks(this.m_brs, this.n_kol);
+        for (int i=0; i<m_brs;i++){
+            for (int j=0 ; j<n_kol; j++){
+                trans.mat[i][j] = this.mat[j][i];
+            }
+        }
+        return (trans);
+    }
+
+    public matriks submat (matriks M, int row, int col){
+        matriks submat = new matriks(this.m_brs - 1,this.n_kol - 1);
+        int x = 0, y=0;
+        for (int i =0 ; i<this.m_brs; i++){
+            for (int j=0 ; j<this.n_kol; j++){
+                if (i!=row && j!= col ){
+                    submat.mat[x][y++] = this.mat[i][j]; // dimasukkin ke submat
+                    if (y == this.m_brs-1){
+                        y=0;
+                        x++;
+                        // y di reset lalu x ditambahkan 1
+                    }
+                }
+            }
+        }
+        return (submat);
+    }
+
+    
+    // // kofaktor 
+    // public matriks kofaktor (matriks M){
+    //     int plusmin;
+    //     matriks kofak = new matriks(this.m_brs,this.n_kol);
+    //     for (int i=0;i<this.m_brs;i++){
+    //         for(int j=0 ; j< this.m_brs ; j++){
+    //             kofak.mat[i][j]= determinan(submat())
+    //         }
+    //     }
+    // }
+    
+
+
+    //end 
 }
