@@ -93,7 +93,7 @@ public class matriks {
             else {
                 plusmin=1;
             }
-            hasil = hasil + ( plusmin * this.mat[0][i] * (determinan(mkecil)) );   
+            hasil = hasil + ( plusmin * this.mat[0][i] * (mkecil.determinan(mkecil)) );   
         }
         return (hasil);
     }
