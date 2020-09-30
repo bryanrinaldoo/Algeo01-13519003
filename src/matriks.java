@@ -1,5 +1,6 @@
 package src;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class matriks {
@@ -31,7 +32,7 @@ public class matriks {
         }
     }
     public matriks(){
-        Scanner input = new Scanner(System.in);//Create scanner
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
         
     
         System.out.println("Masukkan banyak baris: ");
@@ -48,7 +49,7 @@ public class matriks {
         
         for(int i = 0; i < this.m_brs; i++){
             for(int j = 0; j < this.n_kol; j++ ){
-                this.mat[i][j] = input.nextInt();
+                this.mat[i][j] = input.nextDouble();
             }
         }
 
