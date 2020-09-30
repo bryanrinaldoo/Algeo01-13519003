@@ -15,9 +15,12 @@ public class matriks {
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
         System.out.println("Masukkan banyak n: ");
         int n = input.nextInt(); //masukan pengguna 
-        matriks m = new matriks(n,n);
+        System.out.println("Masukkan banyak n: ");
+        int o = input.nextInt(); //masukan pengguna 
+        matriks m = new matriks(n,o);
         m.bacamatriks();
         m.tulismatriks();
+        System.out.println();
         System.out.println("Determinan : "+ m.determinan(m));
         matriks m2 = m.kofaktor(m);
         System.out.println("kofaktor");
@@ -126,6 +129,7 @@ public class matriks {
         }
         return (trans);
     }
+    
     // mencari submatriks 
     public matriks submat (matriks M, int row, int col){
         matriks submat = new matriks(this.m_brs - 1,this.n_kol - 1);
@@ -275,15 +279,17 @@ public class matriks {
     
                 if (row + j + 1 < this.m_brs) {
                     for (int i = row + j + 1; i < this.m_brs; i++) {
-                        addRowWithRow(i, 0, -1 * this.mat[i][0] / this.mat[row + j][0]);
+                        addRowWithRow(i, row + j, -1 * this.mat[i][j] / this.mat[row + j][j]);
                     }   
                 }
             }
         }
     }
 
+    /* Mengembalikan array yang berisi solusi dari suatu matriks eselon baris
+       dengan menggunakan metode substitusi mundur */
     public double[] backwardSubs() {
-        // TODO: Need to fix this code
+        // TODO: Need to complete method for infinity solutions condition
         double[] solution = new double[this.n_kol - 1];
 
         if (searchNonZeroRow(this.m_brs - 1) == (this.n_kol - 1)) {
@@ -292,11 +298,12 @@ public class matriks {
         } else if (searchNonZeroRow(this.m_brs - 1) == -1) {
             return solution;
         } else {
-            solution[this.n_kol - 2] = this.mat[this.m_brs - 1][this.n_kol - 1];
-            for (int j = this.n_kol - 2; j > -1; j--) {
-                for (int i = this.m_brs; i > -1; i--) {
-                    
+            for (int i = this.m_brs - 1; i > -1; i--) {
+                solution[i] = this.mat[i][this.n_kol-1];
+                for (int j = i + 1; j < this.m_brs; j++) {
+                    solution[i] -= this.mat[i][j] * solution[j];
                 }
+                solution[i] /= this.mat[i][i];
             }
 
             return solution;
