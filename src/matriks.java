@@ -21,32 +21,35 @@ public class matriks {
 
     }
     
-    public matriks (int m, int n){
+    /* Konstruktor matriks kosong m x n dengan seluruh elemen bernilai 0 */
+    public matriks(int m, int n) {
         this.m_brs = m;
         this.n_kol = n;
         this.mat = new double[m][n];
+
+        /* Menginisialisai elemen matriks dengan 0 */
         for(int i = 0; i< this.m_brs;i++){
             for(int j = 0; j < this.n_kol; j++){
                 this.mat[i][j] = 0;
             }
         }
     }
-    public matriks(){
+
+    /* Konstruktor matriks dengan membaca elemen dan ukuran dari keyboard */
+    public matriks() {
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
-        
     
         System.out.println("Masukkan banyak baris: ");
         int m = input.nextInt(); //masukan pengguna 
         this.m_brs = m;
+
         System.out.println("Masukkan banyak kolom: ");
         int n = input.nextInt(); //masukan pengguna 
         this.n_kol = n;
 
         this.mat = new double[this.m_brs][this.n_kol];
-        
 
         System.out.println("Masukkan Matriks: ");
-        
         for(int i = 0; i < this.m_brs; i++){
             for(int j = 0; j < this.n_kol; j++ ){
                 this.mat[i][j] = input.nextDouble();
@@ -55,7 +58,9 @@ public class matriks {
 
         input.close();
     }
-    void tulismatriks(){
+
+    /* Menampilkan elemen matrik ke layar */
+    void tulismatriks() {
         for(int i = 0; i < this.m_brs; i++){
             for(int j = 0; j < this.n_kol; j++){
                 System.out.print(this.mat[i][j]+" ");
@@ -63,9 +68,9 @@ public class matriks {
             System.out.println();
         }
     }
-    // mencari determinan 
-    public double determinan (matriks M){
 
+    /* Mencari determinan */
+    public double determinan(matriks M) {
         double hasil =0;
         double plusmin;
         // cek apakah nxn 
@@ -78,16 +83,16 @@ public class matriks {
             return (hasil);
         }
         // determinan matriks 2x2
-        if (this.m_brs==2 && this.n_kol==2){
+        if (this.m_brs==2 && this.n_kol==2) {
             hasil = ((this.mat[0][0] * this.mat[1][1]) - (this.mat[0][1] * this.mat[1][0]));
 			return (hasil);
         }
         // determinan matriks nxn
         
-        for (int i=0;i<this.m_brs;i++){
+        for (int i=0;i<this.m_brs;i++) {
             matriks mkecil = new matriks(this.m_brs - 1,this.n_kol - 1);
-            for(int j=1 ; j<m_brs ; j++){
-                for (int k=0; k < m_brs ;k++){
+            for(int j=1 ; j<m_brs ; j++) {
+                for (int k=0; k < m_brs ;k++) {
                     if (k<i){
                         mkecil.mat[j-1][k]= this.mat[j][k];
                     }
@@ -96,7 +101,8 @@ public class matriks {
                     }
                 }
             }
-            if (i%2==1){
+
+            if (i%2==1) {
                 plusmin=-1;
             }
             else {
@@ -105,6 +111,7 @@ public class matriks {
             
             hasil = hasil + ( plusmin * this.mat[0][i] * (mkecil.determinan(mkecil)) );   
         }
+
         return (hasil);
     }
     
@@ -186,7 +193,73 @@ public class matriks {
         return (inverse);
     }
     
+    /* Melakukan pertukaran dua buah baris */
+    /* I.S. matriks M terdefinisi sembarang, m_brs >= 2 */
+    /* F.S. Baris row1 dan baris row2 bertukartempat */
+    private void swapRow(int row1, int row2) {
+        double[] temp = this.mat[row1];
+        this.mat[row1] = this.mat[row2];
+        this.mat[row2] = temp;
+    }
 
+    /* Mengalikan setiap elemen pada baris row dengan K, K non-nol */
+    /* I.S. matriks M terdefinisi sembarang */
+    /* F.S. Setiap elemen M[i][j] = M[i][j] x K */
+    private void multiplyRowK(int row, double K) {
+        for (int j = 0; j < this.n_kol; j++) {
+            this.mat[row][j] *= K;
+        }
+    }
+
+    /* Melakukan operasi pada baris matriks dalam bentuk rowTarget = rowTarget + (K * rowAdd) */
+    /* I.S. matriks M terdefinisi sembarang, m_brs >= 2 */
+    /* F.S. Setiap elemen pada baris berindeks rowTarget = M[rowTarget][j] + K x M[rowAdd][j] */
+    private void addRowWithRow(int rowTarget, int rowAdd, double K) {
+        for (int j = 0; j < this.n_kol; j++) {
+            this.mat[rowTarget][j] += K * this.mat[rowAdd][j];
+        }
+    }
+
+    /* Mengirimkan indeks baris pertama yang terdapat elemen non-nol, jika tidak terdapat
+       elemen non-nol mengembalikan nilai -1 */
+    private int searchNonZeroKol(int kol) {
+        for (int i = 0; i < this.m_brs; i++) {
+            if (this.mat[i][kol] != 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    
+    /* Prosedur untuk mengonversi matriks menjadi bentuk eselon baris */
+    /* I.S. matriks M terdefinisi sembarang */
+    /* F.S. matriks M dalam bentuk eselon baris, yaitu setiap baris diawali nilai 1
+            dan di bawah nilai 1 itu semuanya diisi oleh 0 */
+    public void convertToMEB() {
+        for (int j = 0; j < this.n_kol; j++) {
+            if (searchNonZeroKol(j) == -1) {
+                continue;
+            }
+
+            int row = 0;
+
+            if (row + j < this.m_brs) {
+                if (this.mat[row + j][j] == 0) {
+                    swapRow(row + j, searchNonZeroKol(j));
+                }
+    
+                multiplyRowK(row + j, 1/this.mat[row + j][j]);
+    
+                if (row + j + 1 < this.m_brs) {
+                    for (int i = row + j + 1; i < this.m_brs; i++) {
+                        addRowWithRow(i, 0, -1 * this.mat[i][0] / this.mat[row + j][0]);
+                    }   
+                }
+            }
+        }
+    }
 
     //end 
 }
