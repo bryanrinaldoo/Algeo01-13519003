@@ -9,7 +9,14 @@ public class matriks {
     public double [][] mat;
 
     public static void main(String[] args) {
-        matriks m = new matriks();
+        // System.out.println("Masukkan banyak baris: ");
+        // int m = input.nextInt(); //masukan pengguna 
+        
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
+        System.out.println("Masukkan banyak n: ");
+        int n = input.nextInt(); //masukan pengguna 
+        matriks m = new matriks(n,n);
+        m.bacamatriks();
         m.tulismatriks();
         System.out.println("Determinan : "+ m.determinan(m));
         matriks m2 = m.kofaktor(m);
@@ -36,20 +43,13 @@ public class matriks {
     }
 
     /* Konstruktor matriks dengan membaca elemen dan ukuran dari keyboard */
-    public matriks() {
+    public matriks bacamatriks() {
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
     
-        System.out.println("Masukkan banyak baris: ");
-        int m = input.nextInt(); //masukan pengguna 
-        this.m_brs = m;
-
-        System.out.println("Masukkan banyak kolom: ");
-        int n = input.nextInt(); //masukan pengguna 
-        this.n_kol = n;
-
-        this.mat = new double[this.m_brs][this.n_kol];
-
+        matriks matriks= new matriks(this.m_brs, this.n_kol);
+        
         System.out.println("Masukkan Matriks: ");
+        
         for(int i = 0; i < this.m_brs; i++){
             for(int j = 0; j < this.n_kol; j++ ){
                 this.mat[i][j] = input.nextDouble();
@@ -57,6 +57,7 @@ public class matriks {
         }
 
         input.close();
+        return(matriks);
     }
 
     /* Menampilkan elemen matrik ke layar */
