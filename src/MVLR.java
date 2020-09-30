@@ -31,9 +31,9 @@ public class MVLR {
             for (int j = 0; j < this.M.n_kol - 1; j++) {
                 if (j == 0) {
                     this.M.mat[i][j] = this.M.mat[0][i];
+                } else {
+                    this.M.mat[i][j] = this.M.mat[i][0] * this.M.mat[0][j];
                 }
-
-                this.M.mat[i][j] = this.M.mat[i][0] * this.M.mat[0][j];
             }
         }
     }
@@ -42,8 +42,9 @@ public class MVLR {
         for (int i = 0; i < this.M.m_brs; i++) {
             if (i == 0) {
                 this.M.mat[i][this.M.n_kol - 1] = y;
+            } else {
+                this.M.mat[i][this.M.n_kol - 1] = y * this.M.mat[i][0];
             }
-            this.M.mat[i][this.M.n_kol - 1] = y * this.M.mat[i][0];
         }
     }
 
