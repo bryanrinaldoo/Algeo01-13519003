@@ -212,6 +212,15 @@ public class matriks {
         }
     }
 
+    /* Mengalikan setiap elemen pada kolom column dengan K, K non-nol */
+    /* I.S. matriks M terdefinisi sembarang */
+    /* F.S. Setiap elemen M[i][column] = M[i][column] x K */
+    private void multiplyColumnK(int column, double K) {
+        for (int i = 0; i < this.m_brs; i++) {
+            this.mat[i][column] *= K;
+        }
+    }
+
     /* Melakukan operasi pada baris matriks dalam bentuk rowTarget = rowTarget + (K * rowAdd) */
     /* I.S. matriks M terdefinisi sembarang, m_brs >= 2 */
     /* F.S. Setiap elemen pada baris berindeks rowTarget = M[rowTarget][j] + K x M[rowAdd][j] */
@@ -233,6 +242,17 @@ public class matriks {
         return -1;
     }
 
+    /* Mengirimkan indeks kolom pertama yang terdapat elemen non-nol, jika tidak terdapat
+       elemen non-nol mengembalikan nilai -1 */
+       private int searchNonZeroRow(int row) {
+        for (int j = 0; j < this.n_kol; j++) {
+            if (this.mat[j][row] != 0) {
+                return j;
+            }
+        }
+
+        return -1;
+    }
     
     /* Prosedur untuk mengonversi matriks menjadi bentuk eselon baris */
     /* I.S. matriks M terdefinisi sembarang */
@@ -261,6 +281,28 @@ public class matriks {
             }
         }
     }
+
+    public double[] backwardSubs() {
+        // TODO: Need to fix this code
+        double[] solution = new double[this.n_kol - 1];
+
+        if (searchNonZeroRow(this.m_brs - 1) == (this.n_kol - 1)) {
+            solution[0] = -1;
+            return solution;
+        } else if (searchNonZeroRow(this.m_brs - 1) == -1) {
+            return solution;
+        } else {
+            solution[this.n_kol - 2] = this.mat[this.m_brs - 1][this.n_kol - 1];
+            for (int j = this.n_kol - 2; j > -1; j--) {
+                for (int i = this.m_brs; i > -1; i--) {
+                    
+                }
+            }
+
+            return solution;
+        }
+    }
+
 
     //end 
 }
