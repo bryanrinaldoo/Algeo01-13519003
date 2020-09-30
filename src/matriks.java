@@ -14,9 +14,10 @@ public class matriks {
         matriks m2 = m.kofaktor(m);
         System.out.println("kofaktor");
         m2.tulismatriks();
-        System.out.println("sub matriks (1,1)");
-        // matriks m3 = m.submat(m, 1, 1);
-        // m3.tulismatriks();
+        System.out.println("invers");
+        matriks m3 = m.inverse(m);
+        m3.tulismatriks();
+
     }
     
     public matriks (int m, int n){
@@ -164,9 +165,24 @@ public class matriks {
         return (kofak);
     }
 
+    // perkalian matriks 
+    public matriks kali_x (matriks M , Double x){
+        matriks x_kali = new matriks(this.m_brs,this.n_kol);
+        for (int i=0;i<this.m_brs;i++){
+            for(int j=0 ; j< this.n_kol; j++){
+                x_kali.mat [i][j] = x * this.mat[i][j];
+            }
+        }
+        return (x_kali);
+    }
+
     //inverse 
     public matriks inverse (matriks M){
-
+        matriks inverse = new matriks (this.m_brs, this.n_kol);
+        inverse = M.kofaktor(M);
+        inverse = inverse.transpose(inverse);
+        inverse = inverse.kali_x(inverse, 1/M.determinan(M));
+        return (inverse);
     }
     
 
