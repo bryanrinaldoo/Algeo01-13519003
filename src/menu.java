@@ -86,7 +86,60 @@ public class menu {
     }
 
     public static void Regresi() {
-        // TODO: Implement this procedure
+        int k, n;
+        double[] x, xk, solution;
+        double y, yk;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("\nMasukkan jumlah variabel: ");
+        k = scan.nextInt();
+
+        System.out.print("Masukkan jumlah data: ");
+        n = scan.nextInt();
+
+        System.out.println();
+
+        x = new double[k];
+        for (int i = 0; i < k; i++) {
+            System.out.print("Masukkan nilai X");
+            System.out.print(i+1);
+            System.out.print("i: ");
+            x[i] = scan.nextDouble();
+        }
+
+        System.out.print("\nMasukkan nilai Yi: ");
+        y = scan.nextDouble();
+
+        System.out.println();
+
+        xk = new double[k];
+        for (int i = 0; i < k; i++) {
+            System.out.print("Masukkan nilai X");
+            System.out.print(i+1);
+            System.out.print("k yang akan ditaksir: ");
+            xk[i] = scan.nextDouble();
+        }
+
+        scan.close();
+
+        MVLR regression = new MVLR(k, n, x, y, xk);
+        solution = regression.resolve();
+        yk = regression.predict();
+
+        System.out.println("\nPersamaan regresi yang terbentuk:");
+        System.out.print("Y");
+        System.out.print(" = ");
+        for (int i = 0; i < solution.length; i++) {
+            if (solution[i] >= 0 || i != 0) {
+                System.out.print(" + ");
+            }
+            System.out.print(solution[i]);
+            System.out.print("X");
+            System.out.print(i+1);
+        }
+
+        System.out.println("\nHasil taksirannya adalah:");
+        System.out.println(yk);
     }
 
     public static void Exit() {
