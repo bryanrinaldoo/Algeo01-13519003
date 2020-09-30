@@ -89,7 +89,7 @@ public class menu {
         int k, n;
         double[] x, xk, solution;
         double y, yk;
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in).useLocale(Locale.US);
 
         System.out.print("\nMasukkan jumlah variabel: ");
         k = scan.nextInt();
@@ -134,8 +134,10 @@ public class menu {
                 System.out.print(" + ");
             }
             System.out.print(solution[i]);
-            System.out.print("X");
-            System.out.print(i+1);
+            if (i != 0) {
+                System.out.print("X");
+                System.out.print(i);
+            }
         }
 
         System.out.println("\nHasil taksirannya adalah:");
