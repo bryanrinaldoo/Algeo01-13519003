@@ -1,3 +1,4 @@
+
 package src;
 
 import java.util.Locale;
@@ -9,8 +10,7 @@ public class matriks {
     public double [][] mat;
 
     public static void main(String[] args) {
-        // System.out.println("Masukkan banyak baris: ");
-        // int m = input.nextInt(); //masukan pengguna 
+
         
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
         System.out.println("Masukkan banyak baris: ");
@@ -20,14 +20,10 @@ public class matriks {
         matriks m = new matriks(n,o);
         m.bacamatriks();
         m.tulismatriks();
-        matriks mx = new matriks(3,1)
-        mx.bacamatriks();
-        mx.tulismatriks();
+        // System.out.println("spl");
+        // matriks spl = m.splinverse(m);
+        // spl.tulismatriks();
 
-        matriks kali = kali_m(m,mx);
-        kali.tulismatriks();
-        
-        // System.out.println();
         // System.out.println("Determinan : "+ m.determinan(m));
         // matriks m2 = m.kofaktor(m);
         // System.out.println("kofaktor");
@@ -66,7 +62,6 @@ public class matriks {
             }
         }
 
-        input.close();
         return(matriks);
     }
 
@@ -84,17 +79,14 @@ public class matriks {
     public double determinan(matriks M) {
         double hasil =0;
         double plusmin;
-        // cek apakah nxn 
-        if (this.m_brs!=this.n_kol){
-            System.out.println("Tidak bisa membuat determinan");
-        }
+        
         //determinan matriks 1 
-        if (this.m_brs==1 && this.n_kol==1) {
+        if (this.m_brs==1 ) {
             hasil = this.mat[0][0];
             return (hasil);
         }
         // determinan matriks 2x2
-        if (this.m_brs==2 && this.n_kol==2) {
+        if (this.m_brs==2) {
             hasil = ((this.mat[0][0] * this.mat[1][1]) - (this.mat[0][1] * this.mat[1][0]));
 			return (hasil);
         }
@@ -186,7 +178,7 @@ public class matriks {
     }
     // perkalian matriks dengan matriks
     public matriks kali_m(matriks m1, matriks m2){
-        matriks m_kali = new matriks(m1.m_brs, m2.n_kol)
+        matriks m_kali = new matriks(m1.m_brs, m2.n_kol);
         for (int i=0;i<m1.m_brs;i++){
             for(int j=0 ; j< m2.n_kol; j++){ 
                 for (int k=0 ;k<m1.n_kol ; k++){
@@ -196,7 +188,7 @@ public class matriks {
         }
         return (m_kali);
     }
-    
+
     // perkalian matriks dengan X
     public matriks kali_x (matriks M , Double x){
         matriks x_kali = new matriks(this.m_brs,this.n_kol);
@@ -233,12 +225,16 @@ public class matriks {
 
     public matriks splinverse(matriks M){
         matriks splinv = new matriks(this.m_brs,this.m_brs);
+        matriks simpan = new matriks(this.m_brs,2);
         for (int i=0;i<this.m_brs;i++){
             for(int j=0 ; j< this.m_brs; j++){
                 splinv.mat[i][j]= this.mat[i][j];
             }
+            simpan.mat[i][0] = this.mat[i][n_kol];
         }
-
+        splinv = splinv.inverse(splinv);
+        splinv = splinv.kali_m(splinv,simpan);
+        return (splinv);
     }
     
     /* Melakukan pertukaran dua buah baris */
