@@ -20,9 +20,10 @@ public class matriks {
         matriks m = new matriks(n,o);
         m.bacamatriks();
         m.tulismatriks();
-        // System.out.println("spl");
-        // matriks spl = m.splinverse(m);
-        // spl.tulismatriks();
+    
+        System.out.println("spl");
+        matriks spl = m.splinverse(m);
+        spl.tulismatriks();
 
         // System.out.println("Determinan : "+ m.determinan(m));
         // matriks m2 = m.kofaktor(m);
@@ -182,7 +183,7 @@ public class matriks {
         for (int i=0;i<m1.m_brs;i++){
             for(int j=0 ; j< m2.n_kol; j++){ 
                 for (int k=0 ;k<m1.n_kol ; k++){
-                    m_kali.mat[i][j] += m1.mat[i][k] * m1.mat[k][j];
+                    m_kali.mat[i][j] += m1.mat[i][k] * m2.mat[k][j];
                 }
             }
         }
@@ -225,12 +226,12 @@ public class matriks {
 
     public matriks splinverse(matriks M){
         matriks splinv = new matriks(this.m_brs,this.m_brs);
-        matriks simpan = new matriks(this.m_brs,2);
+        matriks simpan = new matriks(this.m_brs,1);
         for (int i=0;i<this.m_brs;i++){
             for(int j=0 ; j< this.m_brs; j++){
                 splinv.mat[i][j]= this.mat[i][j];
             }
-            simpan.mat[i][0] = this.mat[i][n_kol];
+            simpan.mat[i][0] = this.mat[i][this.n_kol-1];
         }
         splinv = splinv.inverse(splinv);
         splinv = splinv.kali_m(splinv,simpan);
