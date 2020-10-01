@@ -192,7 +192,11 @@ public class matriks {
     //inverse 
     public matriks inverse (matriks M){
         matriks inverse = new matriks (this.m_brs, this.m_brs);
-        if (this.m_brs==2){
+        if (this.m_brs==1){
+            inverse.mat[0][0]=1/this.mat[0][0];
+            return (inverse);
+        }
+        else if (this.m_brs==2){
             inverse.mat[0][0]= this.mat[1][1];
             inverse.mat[0][1]= -1 * this.mat[0][1];
             inverse.mat[1][0]= -1 * this.mat[1][0];
