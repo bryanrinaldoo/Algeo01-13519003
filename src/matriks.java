@@ -25,6 +25,10 @@ public class matriks {
         matriks spl = m.splinverse(m);
         spl.tulismatriks();
 
+        System.out.println("spl crm");
+        matriks splcrm = m.splcrammer(m);
+        splcrm.tulismatriks();
+
         // System.out.println("Determinan : "+ m.determinan(m));
         // matriks m2 = m.kofaktor(m);
         // System.out.println("kofaktor");
@@ -223,7 +227,7 @@ public class matriks {
             return (inverse);
         }
     }
-
+    // spl dengan metode invers
     public matriks splinverse(matriks M){
         matriks splinv = new matriks(this.m_brs,this.m_brs);
         matriks simpan = new matriks(this.m_brs,1);
@@ -236,6 +240,28 @@ public class matriks {
         splinv = splinv.inverse(splinv);
         splinv = splinv.kali_m(splinv,simpan);
         return (splinv);
+    }
+    //spl dengan metoder crammer 
+    public matriks splcrammer(matriks M){
+        matriks splcrm = new matriks(this.m_brs,1);
+        matriks detergede= new matriks (this.m_brs,this.m_brs);
+        // matriks m2 = new matriks (this.m_brs,this.m_brs);
+        // matriks m3 = new matriks (this.m_brs,this.m_brs);
+        double detersimpan;
+        for (int i=0; i<this.m_brs; i++){
+            matriks deterkecil = new matriks (this.m_brs,this.m_brs);
+            for (int j=0; j<this.m_brs;j++){
+                for (int k=0; k<this.m_brs;k++){
+                    deterkecil.mat[j][k]= this.mat[j][k];
+                    detergede.mat[j][k]= this.mat[j][k];   
+                }
+                deterkecil.mat[j][i]= this.mat[j][this.n_kol-1]; 
+            }
+            detersimpan = deterkecil.determinan(deterkecil);
+            splcrm.mat[i][0]= detersimpan; 
+            splcrm.mat[i][0]= splcrm.mat[i][0]/detergede.determinan(detergede);
+        }
+        return (splcrm);
     }
     
     /* Melakukan pertukaran dua buah baris */
