@@ -20,14 +20,21 @@ public class matriks {
         matriks m = new matriks(n,o);
         m.bacamatriks();
         m.tulismatriks();
-        System.out.println();
-        System.out.println("Determinan : "+ m.determinan(m));
-        matriks m2 = m.kofaktor(m);
-        System.out.println("kofaktor");
-        m2.tulismatriks();
-        System.out.println("invers");
-        matriks m3 = m.inverse(m);
-        m3.tulismatriks();
+        matriks mx = new matriks(3,1)
+        mx.bacamatriks();
+        mx.tulismatriks();
+
+        matriks kali = kali_m(m,mx);
+        kali.tulismatriks();
+        
+        // System.out.println();
+        // System.out.println("Determinan : "+ m.determinan(m));
+        // matriks m2 = m.kofaktor(m);
+        // System.out.println("kofaktor");
+        // m2.tulismatriks();
+        // System.out.println("invers");
+        // matriks m3 = m.inverse(m);
+        // m3.tulismatriks();
         input.close();
     }
     
@@ -177,12 +184,24 @@ public class matriks {
         }
         return (kofak);
     }
-
-    // perkalian matriks 
+    // perkalian matriks dengan matriks
+    public matriks kali_m(matriks m1, matriks m2){
+        matriks m_kali = new matriks(m1.m_brs, m2.n_kol)
+        for (int i=0;i<m1.m_brs;i++){
+            for(int j=0 ; j< m2.n_kol; j++){ 
+                for (int k=0 ;k<m1.n_kol ; k++){
+                    m_kali.mat[i][j] += m1.mat[i][k] * m1.mat[k][j];
+                }
+            }
+        }
+        return (m_kali);
+    }
+    
+    // perkalian matriks dengan X
     public matriks kali_x (matriks M , Double x){
         matriks x_kali = new matriks(this.m_brs,this.n_kol);
         for (int i=0;i<this.m_brs;i++){
-            for(int j=0 ; j< this.n_kol; j++){
+            for(int j=0 ; j< this.n_kol; j++){  
                 x_kali.mat [i][j] = x * this.mat[i][j];
             }
         }
@@ -210,6 +229,16 @@ public class matriks {
             inverse = inverse.kali_x(inverse, 1/M.determinan(M));
             return (inverse);
         }
+    }
+
+    public matriks splinverse(matriks M){
+        matriks splinv = new matriks(this.m_brs,this.m_brs);
+        for (int i=0;i<this.m_brs;i++){
+            for(int j=0 ; j< this.m_brs; j++){
+                splinv.mat[i][j]= this.mat[i][j];
+            }
+        }
+
     }
     
     /* Melakukan pertukaran dua buah baris */
