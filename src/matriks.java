@@ -13,9 +13,9 @@ public class matriks {
         // int m = input.nextInt(); //masukan pengguna 
         
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
-        System.out.println("Masukkan banyak n: ");
+        System.out.println("Masukkan banyak baris: ");
         int n = input.nextInt(); //masukan pengguna 
-        System.out.println("Masukkan banyak n: ");
+        System.out.println("Masukkan banyak kolom: ");
         int o = input.nextInt(); //masukan pengguna 
         matriks m = new matriks(n,o);
         m.bacamatriks();
@@ -28,7 +28,7 @@ public class matriks {
         System.out.println("invers");
         matriks m3 = m.inverse(m);
         m3.tulismatriks();
-
+        input.close();
     }
     
     /* Konstruktor matriks kosong m x n dengan seluruh elemen bernilai 0 */
@@ -191,11 +191,21 @@ public class matriks {
 
     //inverse 
     public matriks inverse (matriks M){
-        matriks inverse = new matriks (this.m_brs, this.n_kol);
-        inverse = M.kofaktor(M);
-        inverse = inverse.transpose(inverse);
-        inverse = inverse.kali_x(inverse, 1/M.determinan(M));
-        return (inverse);
+        matriks inverse = new matriks (this.m_brs, this.m_brs);
+        if (this.m_brs==2){
+            inverse.mat[0][0]= this.mat[1][1];
+            inverse.mat[0][1]= -1 * this.mat[0][1];
+            inverse.mat[1][0]= -1 * this.mat[1][0];
+            inverse.mat[1][1]= this.mat[0][0];
+            inverse = inverse.kali_x(inverse, 1/M.determinan(M));
+            return (inverse);
+        }
+        else{
+            inverse = M.kofaktor(M);
+            inverse = inverse.transpose(inverse);
+            inverse = inverse.kali_x(inverse, 1/M.determinan(M));
+            return (inverse);
+        }
     }
     
     /* Melakukan pertukaran dua buah baris */
