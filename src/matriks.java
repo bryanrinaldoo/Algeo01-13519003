@@ -1,6 +1,7 @@
 
 package src;
-
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -9,17 +10,21 @@ public class matriks {
     public int n_kol;
     public double [][] mat;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
         
         
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
-        System.out.println("Masukkan banyak baris: ");
-        int n = input.nextInt(); //masukan pengguna 
-        System.out.println("Masukkan banyak kolom: ");
-        int o = input.nextInt(); //masukan pengguna 
-        matriks m = new matriks(n,o);
-        m.bacamatriks();
-        m.tulismatriks();
+        System.out.println("masukkan nama file : ");
+        String file = input.nextLine();
+        matriks n = new matriks(file);
+        n.tulismatriks();
+        // System.out.println("Masukkan banyak baris: ");
+        // int n = input.nextInt(); //masukan pengguna 
+        // System.out.println("Masukkan banyak kolom: ");
+        // int o = input.nextInt(); //masukan pengguna 
+        // matriks m = new matriks(n,o);
+        // m.bacamatriks();
+        // m.tulismatriks();
     
         // System.out.println("spl");
         // matriks spl = m.splinverse(m);
@@ -52,7 +57,34 @@ public class matriks {
             }
         }
     }
-    
+    //matriks baca file 
+    // harus taro di luar file src atau bisa pake src/namafile.txt
+    //baca file matriks yang isi nya line pertama m line kedua n lalu di bawah nya matriks
+    public matriks (String file) throws FileNotFoundException{
+        File namafile = new File(file);
+        Scanner scanFile = new Scanner(namafile); 
+        int baris = scanFile.nextInt();
+        this.m_brs = baris;
+        if (scanFile.hasNextInt()){
+            int kolom = scanFile.nextInt();
+            this.n_kol = kolom;
+        }
+        else {
+            this.n_kol = baris;
+        }
+        this.mat = new double[m_brs][n_kol];
+
+        int i=0;
+        while(scanFile.hasNextDouble()){
+            for(int j = 0; j < this.n_kol; j++){
+                this.mat[i][j] = scanFile.nextDouble();
+            }
+            i++;
+        }
+        scanFile.close();
+
+    }
+
     /* Konstruktor matriks dengan membaca elemen dan ukuran dari keyboard */
     public matriks bacamatriks() {
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
