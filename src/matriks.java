@@ -438,39 +438,12 @@ public class matriks {
             System.out.printf("%.3f ", sol[i]);   
         System.out.println();     
     }    
-    // /** Main function **/
-    // public static void main (String[] args) 
-    // {
-    //     Scanner scan = new Scanner(System.in);
-    //     System.out.println("Gaussian Elimination Algorithm Test\n");
-    //     /** Make an object of GaussianElimination class **/
-    //     GaussianElimination ge = new GaussianElimination();
- 
-    //     System.out.println("\nEnter number of variables");
-    //     int N = scan.nextInt();
- 
-    //     double[] B = new double[N];
-    //     double[][] A = new double[N][N];
- 
-    //     System.out.println("\nEnter "+ N +" equations coefficients ");
-    //     for (int i = 0; i < N; i++)
-    //         for (int j = 0; j < N; j++)
-    //             A[i][j] = scan.nextDouble();
- 
-    //     System.out.println("\nEnter "+ N +" solutions");
-    //     for (int i = 0; i < N; i++)
-    //         B[i] = scan.nextDouble();
- 
-    //     ge.solve(A,B);
-    // }
+    
 
     public matriks gssjrdn(matriks a, matriks b){
         int n = b.length;
         int j;
-        a = new mat[n][n];
-        b = new mat[n][1];
-
-        
+           
         for (int k = 0; k < n; k++){
             //partial pivoting
             if (Math.abs(a.a[k][k]) < 1.0e-12){

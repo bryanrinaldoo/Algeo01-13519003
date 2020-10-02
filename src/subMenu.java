@@ -102,6 +102,7 @@ public class subMenu  {
 
     }
     public static void Gauss() {
+        
         String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
         Scanner scan = new Scanner(System.in);
         System.out.println("\nPILIHAN");
@@ -122,11 +123,38 @@ public class subMenu  {
 
             case 2:
             // isi sendiri
+                // Scanner scanf = new Scanner(System.in);
+                // System.out.println("Gaussian Elimination Algorithm Test\n");
+                // /** Make an object of GaussianElimination class **/
+                // System.out.println("Masukkan banyak baris: ");
+                // int x = inputn.nextInt(); //masukan pengguna 
+                // System.out.println("Masukkan banyak kolom: ");
+                // int o = inputn.nextInt(); //masukan pengguna 
+                // matriks ge = new matriks(x,o);
                 
+        
+                // System.out.println("\nEnter number of variables");
+                // int N = scan.nextInt();
+        
+                // double[] B = new double[N];
+                // double[][] A = new double[N][N];
+        
+                // System.out.println("\nEnter "+ N +" equations coefficients ");
+                // for (int i = 0; i < N; i++)
+                //     for (int j = 0; j < N; j++)
+                //         A[i][j] = scan.nextDouble();
+        
+                // System.out.println("\nEnter "+ N +" solutions");
+                // for (int i = 0; i < N; i++)
+                //     B[i] = scan.nextDouble();
+        
+                // ge.solve(A,B);
+                // scan.close();
+                break;
             default:
                 break;
         }
-        scan.close();
+       
 
     }
     public static void GaussJordan() {
