@@ -185,42 +185,76 @@ public class menu {
         }
     
 
-    public static void Regresi() {
+    public static void Regresi() throws FileNotFoundException {
+
         int k, n;
         double[] x, xk, solution;
         double y, yk;
-        Scanner scan = new Scanner(System.in).useLocale(Locale.US);
 
-        System.out.print("\nMasukkan jumlah variabel: ");
-        k = scan.nextInt();
-
-        System.out.print("Masukkan jumlah data: ");
-        n = scan.nextInt();
-
-        System.out.println();
-
-        x = new double[k];
-        for (int i = 0; i < k; i++) {
-            System.out.print("Masukkan nilai X");
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
             System.out.print(i+1);
-            System.out.print("i: ");
-            x[i] = scan.nextDouble();
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
         }
-
-        System.out.print("\nMasukkan nilai Yi: ");
-        y = scan.nextDouble();
-
-        System.out.println();
-
-        xk = new double[k];
-        for (int i = 0; i < k; i++) {
-            System.out.print("Masukkan nilai X");
-            System.out.print(i+1);
-            System.out.print("k yang akan ditaksir: ");
-            xk[i] = scan.nextDouble();
-        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenu = scan.nextInt();
+        int currentSubMenu = subMenu;
 
         scan.close();
+
+        switch (currentSubMenu) {
+            case 1:
+
+                Scanner inputf = new Scanner(System.in).useLocale(Locale.US);//Create scanner
+                System.out.println("masukkan nama file : ");
+                String file = inputf.nextLine();
+                matriks M = new matriks(file);
+                M.tulismatriks();
+                break;
+        
+            case 2:
+
+                Scanner input = new Scanner(System.in).useLocale(Locale.US);
+        
+                System.out.print("\nMasukkan jumlah variabel: ");
+                k = input.nextInt();
+        
+                System.out.print("Masukkan jumlah data: ");
+                n = input.nextInt();
+        
+                System.out.println();
+        
+                x = new double[k];
+                for (int i = 0; i < k; i++) {
+                    System.out.print("Masukkan nilai X");
+                    System.out.print(i+1);
+                    System.out.print("i: ");
+                    x[i] = input.nextDouble();
+                }
+        
+                System.out.print("\nMasukkan nilai Yi: ");
+                y = input.nextDouble();
+        
+                System.out.println();
+        
+                xk = new double[k];
+                for (int i = 0; i < k; i++) {
+                    System.out.print("Masukkan nilai X");
+                    System.out.print(i+1);
+                    System.out.print("k yang akan ditaksir: ");
+                    xk[i] = input.nextDouble();
+                }
+        
+                input.close();
+                break;
+
+            default:
+                Exit();
+                break;
+        }
 
         MVLR regression = new MVLR(k, n, x, y, xk);
         solution = regression.resolve();
@@ -242,6 +276,7 @@ public class menu {
 
         System.out.println("\nHasil taksirannya adalah:");
         System.out.println(yk);
+
     }
 
     public static void Exit() {
