@@ -438,77 +438,53 @@ public class matriks {
             System.out.printf("%.3f ", sol[i]);   
         System.out.println();     
     }    
-    // /** Main function **/
-    // public static void main (String[] args) 
-    // {
-    //     Scanner scan = new Scanner(System.in);
-    //     System.out.println("Gaussian Elimination Algorithm Test\n");
-    //     /** Make an object of GaussianElimination class **/
-    //     GaussianElimination ge = new GaussianElimination();
- 
-    //     System.out.println("\nEnter number of variables");
-    //     int N = scan.nextInt();
- 
-    //     double[] B = new double[N];
-    //     double[][] A = new double[N][N];
- 
-    //     System.out.println("\nEnter "+ N +" equations coefficients ");
-    //     for (int i = 0; i < N; i++)
-    //         for (int j = 0; j < N; j++)
-    //             A[i][j] = scan.nextDouble();
- 
-    //     System.out.println("\nEnter "+ N +" solutions");
-    //     for (int i = 0; i < N; i++)
-    //         B[i] = scan.nextDouble();
- 
-    //     ge.solve(A,B);
-    // }
+    
 
-    public matriks gssjrdn(matriks a, matriks b){
-        int n = b.length;
-        int j;
-        a = new mat[n][n];
-        b = new mat[n][1];
+    // public matriks gssjrdn(matriks a, matriks b){
+    //     int n = b.length;
+    //     int j;
+    //     a = new mat[n][n];
+    //     b = new mat[n][1];
 
         
-        for (int k = 0; k < n; k++){
-            //partial pivoting
-            if (Math.abs(a.a[k][k]) < 1.0e-12){
-                for (int i = k+1; i<n; i++){
-                    if (Math.abs(a.a[i][k]) > (Math.abs(a.a[k][k]))){
-                        for (j = k; j<n;j++){
-                            int temp = a.a[k][j];
-                            a.a[k][j]= a.a[i][j];
-                            a.a[i][j]= temp;
-                        }
-                        int temp = b.b[k];
-                        b.b[k] = b.b[i];
-                        b.b[i] = temp;
-                    }
-                }
-            }
-            //division of row
-            int pivot = a.a[k][k];
-            for (j=k; j<n;j++){
-                a.a[k][j] /= pivot;
-            }
-            b.b[k] /= pivot;
+    //     for (int k = 0; k < n; k++){
+    //         //partial pivoting
+    //         if (Math.abs(a.a[k][k]) < 1.0e-12){
+    //             for (int i = k+1; i<n; i++){
+    //                 if (Math.abs(a.a[i][k]) > (Math.abs(a.a[k][k]))){
+    //                     for (j = k; j<n;j++){
+    //                         int temp = a.a[k][j];
+    //                         a.a[k][j]= a.a[i][j];
+    //                         a.a[i][j]= temp;
+    //                     }
+    //                     int temp = b.b[k];
+    //                     b.b[k] = b.b[i];
+    //                     b.b[i] = temp;
+    //                 }
+    //             }
+    //         }
+    //         //division of row
+    //         int pivot = a.a[k][k];
+    //         for (j=k; j<n;j++){
+    //             a.a[k][j] /= pivot;
+    //         }
+    //         b.b[k] /= pivot;
 
-            //elimination loop
-            for (int i = 0; i<n;i++){
-                if ((i==k) || (a.a[i][k] == 0)){
-                    continue;
-                }
-                int factor = a.a[i][k];
-                for (j=k; j<n; j++){
-                    a.a[i][j] -= factor*a.a[k][j];
-                }
-                b.b[i] -= factor*b.b[k];
-            }
-        }
-        return b;
-        return a;
-    }
+    //         //elimination loop
+    //         for (int i = 0; i<n;i++){
+    //             if ((i==k) || (a.a[i][k] == 0)){
+    //                 continue;
+    //             }
+    //             int factor = a.a[i][k];
+    //             for (j=k; j<n; j++){
+    //                 a.a[i][j] -= factor*a.a[k][j];
+    //             }
+    //             b.b[i] -= factor*b.b[k];
+    //         }
+    //     }
+    //     return b;
+    //     return a;
+    // }
     
     //end 
 }
