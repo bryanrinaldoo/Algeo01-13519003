@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class menu {
     
-    public static void SPL() {
+    public static void SPL() throws FileNotFoundException {
         String[] subMenuList = {"Metode Eliminasi Gauss", "Metode Eliminasi Gauss-Jordan", "Metode Matriks Balikan", "Metode Cramer"};
         Scanner scan = new Scanner(System.in);
         

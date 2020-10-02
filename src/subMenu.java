@@ -4,8 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class subMenu {
-    public static void Inverse() {
+
+public class subMenu  {
+    public static void Inverse() throws FileNotFoundException {
         String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
         Scanner scan = new Scanner(System.in);
         System.out.println("\nPILIHAN");
@@ -52,7 +53,7 @@ public class subMenu {
         }
         scan.close();
     }
-    public static void Cramer() {
+    public static void Cramer() throws FileNotFoundException{
         String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
         Scanner scan = new Scanner(System.in);
         System.out.println("\nPILIHAN");
