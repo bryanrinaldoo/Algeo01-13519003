@@ -10,7 +10,39 @@ public class matriks {
     public int n_kol;
     public double [][] mat;
 
+    public static void main(String[] args) throws FileNotFoundException{
+        
+        
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
+        System.out.println("masukkan nama file : ");
+        String file = input.nextLine();
+        matriks n = new matriks(file);
+        n.tulismatriks();
+        // System.out.println("Masukkan banyak baris: ");
+        // int n = input.nextInt(); //masukan pengguna 
+        // System.out.println("Masukkan banyak kolom: ");
+        // int o = input.nextInt(); //masukan pengguna 
+        // matriks m = new matriks(n,o);
+        // m.bacamatriks();
+        // m.tulismatriks();
     
+        // System.out.println("spl");
+        // matriks spl = m.splinverse(m);
+        // spl.tulismatriks();
+
+        // System.out.println("spl crm");
+        // matriks splcrm = m.splcrammer(m);
+        // splcrm.tulismatriks();
+
+        // System.out.println("Determinan : "+ m.determinan(m));
+        // matriks m2 = m.kofaktor(m);
+        // System.out.println("kofaktor");
+        // m2.tulismatriks();
+        // System.out.println("invers");
+        // matriks m3 = m.inverse(m);
+        // m3.tulismatriks();
+        input.close();
+    }
     
     /* Konstruktor matriks kosong m x n dengan seluruh elemen bernilai 0 */
     public matriks(int m, int n) {
@@ -385,6 +417,7 @@ public class matriks {
         }
     }
 
+    
 
     //end 
 }
