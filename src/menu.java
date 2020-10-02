@@ -1,5 +1,5 @@
 package src;
-
+import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -30,53 +30,68 @@ public class menu {
         }
     }
 
-    public static void Determinan() {
-        int currentSubMenu;
-        currentSubMenu = subMenu();
+    public static void Determinan() throws FileNotFoundException{
+        int currentSubMenu = subMenu();
 
         switch (currentSubMenu) {
             case 1:
-                subMenu.Gauss(); // TODO: Implement this procedure
+            // pake file
+                Scanner inputf = new Scanner(System.in).useLocale(Locale.US);//Create scanner
+                System.out.println("masukkan nama file : ");
+                String file = inputf.nextLine();
+                matriks n = new matriks(file);
+                n.tulismatriks();
+                System.out.println("Determinan dari matriks di atas adalah : "+ n.determinan(n));
+                inputf.close();
                 break;
 
             case 2:
-                subMenu.GaussJordan(); // TODO: Implement this procedure
+            // isi sendiri
+                Scanner inputn= new Scanner(System.in); // buat scanner 
+                System.out.println("Masukkan banyak N untuk matriks (N x N):  ");
+                int x = inputn.nextInt(); //masukan pengguna 
+                matriks m = new matriks(x,x);
+                m.bacamatriks();
+                m.tulismatriks();
+                System.out.println("Determinan dari matriks di atas adalah : "+ m.determinan(m));
+                inputn.close();
                 break;
-
-            case 3:
-                subMenu.Inverse(); // TODO: Implement this procedure
-                break;
-
-            case 4:
-                subMenu.Cramer(); // TODO: Implement this procedure
-                break;
-        
+                
             default:
                 break;
         }
     }
 
-    public static void Inverse() {
-        int currentSubMenu;
-        currentSubMenu = subMenu();
+    public static void Inverse() throws FileNotFoundException {
+        int currentSubMenu = subMenu();
 
         switch (currentSubMenu) {
             case 1:
-                subMenu.Gauss(); // TODO: Implement this procedure
+            // pake file
+                Scanner inputf = new Scanner(System.in).useLocale(Locale.US);//Create scanner
+                System.out.println("masukkan nama file : ");
+                String file = inputf.nextLine();
+                matriks n = new matriks(file);
+                n.tulismatriks();
+                System.out.println("Matriks balikan dari matriks di atas adalah : ");
+                matriks inv_f = n.inverse(n);
+                inv_f.tulismatriks();                
+                inputf.close();
                 break;
 
             case 2:
-                subMenu.GaussJordan(); // TODO: Implement this procedure
+            // isi sendiri
+                Scanner inputn= new Scanner(System.in); // buat scanner 
+                System.out.println("Masukkan banyak N untuk matriks (N x N):  ");
+                int x = inputn.nextInt(); //masukan pengguna 
+                matriks m = new matriks(x,x);
+                m.bacamatriks();
+                m.tulismatriks();
+                System.out.println("Matriks balikan dari matriks di atas adalah : ");
+                matriks inv_i = m.inverse(m);
+                inv_i.tulismatriks();
+                inputn.close();
                 break;
-
-            case 3:
-                subMenu.Inverse(); // TODO: Implement this procedure
-                break;
-
-            case 4:
-                subMenu.Cramer(); // TODO: Implement this procedure
-                break;
-        
             default:
                 break;
         }
