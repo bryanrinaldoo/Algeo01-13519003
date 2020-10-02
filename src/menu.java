@@ -6,7 +6,19 @@ import java.util.Scanner;
 public class menu {
     
     public static void SPL() {
-        int currentSubMenu = subMenu();
+        String[] subMenuList = {"Metode Eliminasi Gauss", "Metode Eliminasi Gauss-Jordan", "Metode Matriks Balikan", "Metode Cramer"};
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("\nSUB-MENU");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+
+        System.out.print("Masukkan pilihan sub-menu: ");
+        int currentSubMenu = scan.nextInt();
+        scan.close();
 
         switch (currentSubMenu) {
             case 1:
@@ -28,10 +40,21 @@ public class menu {
             default:
                 break;
         }
+        scan.close();
     }
 
     public static void Determinan() throws FileNotFoundException{
-        int currentSubMenu = subMenu();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenu = scan.nextInt();
+        int currentSubMenu = subMenu;
 
         switch (currentSubMenu) {
             case 1:
@@ -60,10 +83,21 @@ public class menu {
             default:
                 break;
         }
+        scan.close();
     }
 
     public static void Inverse() throws FileNotFoundException {
-        int currentSubMenu = subMenu();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenu = scan.nextInt();
+        int currentSubMenu = subMenu;
 
         switch (currentSubMenu) {
             case 1:
@@ -95,12 +129,13 @@ public class menu {
             default:
                 break;
         }
+        scan.close();
+
     }
 
     public static void Interpolasi() {
         // TODO: Implement this procedure
-        public static void main(String[] args)
-        {
+        
            Scanner input = new Scanner(System.in);
            
            int n; 
@@ -116,7 +151,7 @@ public class menu {
            double besar;  
    
            //meminta masukan pengguna
-            System.out.print("Masukkan banyak N :"); 
+            System.out.print("Masukkan banyak N : "); 
             n = input.nextInt(); 
     
            
@@ -125,7 +160,7 @@ public class menu {
                 arrayx[i] = input.nextDouble(); 
             }
             for(i = 0; i<n; i++) {
-                System.out.print("Enter the value for y" + i + ": ");
+                System.out.print("Masukkan y" + i + ": ");
                 arrayy[i] = input.nextDouble();
             }
             //Masukkan x yang mau dimasukkan kedalam fungsi
@@ -146,8 +181,9 @@ public class menu {
                 y = y + (kecil/besar) * arrayy[i];
             }
             System.out.println("Saat x = " + x + "maka" + " y = " +  y);
+            input.close();
         }
-    }
+    
 
     public static void Regresi() {
         int k, n;
@@ -212,21 +248,5 @@ public class menu {
         System.exit(0);
     }
 
-    private static int subMenu() {
-        String[] subMenuList = {"Metode Eliminasi Gauss", "Metode Eliminasi Gauss-Jordan", "Metode Matriks Balikan", "Metode Cramer"};
-        Scanner scan = new Scanner(System.in);
-        
-        System.out.println("\nSUB-MENU");
-        for (int i = 0; i < subMenuList.length; i++) {
-            System.out.print(i+1);
-            System.out.print(". ");
-            System.out.println(subMenuList[i]);
-        }
-
-        System.out.print("Masukkan pilihan sub-menu: ");
-        int currentSubMenu = scan.nextInt();
-        scan.close();
-
-        return currentSubMenu;
-    }
+    
 }

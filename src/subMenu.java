@@ -6,7 +6,18 @@ import java.util.Scanner;
 
 public class subMenu {
     public static void Inverse() {
-        int currentSubMenuSPL = subMenuSPL();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenuSPL = scan.nextInt();
+
+        int currentSubMenuSPL = subMenuSPL;
         switch (currentSubMenuSPL) {
             case 1:
             // pake file
@@ -39,9 +50,21 @@ public class subMenu {
             default:
                 break;
         }
+        scan.close();
     }
     public static void Cramer() {
-        int currentSubMenuSPL = subMenuSPL();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenuSPL = scan.nextInt();
+
+        int currentSubMenuSPL = subMenuSPL;
         switch (currentSubMenuSPL) {
             case 1:
             // pake file
@@ -74,9 +97,22 @@ public class subMenu {
             default:
                 break;
         }
+        scan.close();
+
     }
     public static void Gauss() {
-        int currentSubMenuSPL = subMenuSPL();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenuSPL = scan.nextInt();
+
+        int currentSubMenuSPL = subMenuSPL;
         switch (currentSubMenuSPL) {
             case 1:
             // pake file
@@ -89,9 +125,22 @@ public class subMenu {
             default:
                 break;
         }
+        scan.close();
+
     }
     public static void GaussJordan() {
-        int currentSubMenuSPL = subMenuSPL();
+        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPILIHAN");
+        for (int i = 0; i < subMenuList.length; i++) {
+            System.out.print(i+1);
+            System.out.print(". ");
+            System.out.println(subMenuList[i]);
+        }
+        System.out.print("Masukkan pilihan menu: ");
+        int subMenuSPL = scan.nextInt();
+
+        int currentSubMenuSPL = subMenuSPL;
         switch (currentSubMenuSPL) {
             case 1:
             // pake file
@@ -104,6 +153,8 @@ public class subMenu {
             default:
                 break;
         }
+        scan.close();
+
     }
 
 
