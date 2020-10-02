@@ -10,7 +10,7 @@ public class matriks {
     public double [][] mat;
 
     public static void main(String[] args) {
-
+        
         
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
         System.out.println("Masukkan banyak baris: ");
@@ -21,13 +21,13 @@ public class matriks {
         m.bacamatriks();
         m.tulismatriks();
     
-        System.out.println("spl");
-        matriks spl = m.splinverse(m);
-        spl.tulismatriks();
+        // System.out.println("spl");
+        // matriks spl = m.splinverse(m);
+        // spl.tulismatriks();
 
-        System.out.println("spl crm");
-        matriks splcrm = m.splcrammer(m);
-        splcrm.tulismatriks();
+        // System.out.println("spl crm");
+        // matriks splcrm = m.splcrammer(m);
+        // splcrm.tulismatriks();
 
         // System.out.println("Determinan : "+ m.determinan(m));
         // matriks m2 = m.kofaktor(m);
@@ -52,7 +52,7 @@ public class matriks {
             }
         }
     }
-
+    
     /* Konstruktor matriks dengan membaca elemen dan ukuran dari keyboard */
     public matriks bacamatriks() {
         Scanner input = new Scanner(System.in).useLocale(Locale.US);//Create scanner
