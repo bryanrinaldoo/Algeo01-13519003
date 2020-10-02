@@ -62,27 +62,36 @@ public class matriks {
     //baca file matriks yang isi nya line pertama m line kedua n lalu di bawah nya matriks
     public matriks (String file) throws FileNotFoundException{
         File namafile = new File(file);
-        Scanner scanFile = new Scanner(namafile); 
-        int baris = scanFile.nextInt();
-        this.m_brs = baris;
-        if (scanFile.hasNextInt()){
-            int kolom = scanFile.nextInt();
-            this.n_kol = kolom;
-        }
-        else {
-            this.n_kol = baris;
-        }
-        this.mat = new double[m_brs][n_kol];
-
-        int i=0;
-        while(scanFile.hasNextDouble()){
-            for(int j = 0; j < this.n_kol; j++){
-                this.mat[i][j] = scanFile.nextDouble();
-            }
-            i++;
+        Scanner scanFile = new Scanner(namafile);
+        int baris = 0;
+        int total = 0;
+        //cek banyak baris
+        while(scanFile.hasNextLine()){
+            baris++;
+            scanFile.nextLine();
         }
         scanFile.close();
+        //cek total matriks
+        Scanner sum = new Scanner(namafile);
+        while(sum.hasNextInt()){
+            total++;
+            sum.nextInt();
+        }
+        sum.close();
+        
+        this.m_brs = baris;
+        this.n_kol = total/baris;
+        this.mat= new double [this.m_brs][this.n_kol];
 
+        Scanner input = new Scanner(namafile);
+        for(int i = 0; i < this.m_brs; i++){
+            for(int j = 0; j < this.n_kol; j++){
+                if(input.hasNextInt()){
+                    this.mat[i][j] = input.nextInt();
+                }
+            }
+        }
+        input.close();
     }
 
     /* Konstruktor matriks dengan membaca elemen dan ukuran dari keyboard */
