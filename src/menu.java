@@ -99,60 +99,53 @@ public class menu {
 
     public static void Interpolasi() {
         // TODO: Implement this procedure
-        package src;
-
-        import java.util.Scanner;
-
-        public class interpolinom
+        public static void main(String[] args)
         {
-            public static void main(String[] args)
-            {
-                Scanner input = new Scanner(System.in);
-                
-                int n; 
-                int i, j; 
-                
-                double [] arrayx = new double[200]; //Array limit 199
-                double [] arrayy = new double[200]; //Array limit 199
-                //The arbitrary value, x to be entered for
-                //which the value of y can be known
-                double x = 0; 
-                double y = 0; 
-                double kecil;
-                double besar;  
-        
-                //meminta masukan pengguna
-                    System.out.print("Masukkan banyak N :"); 
-                    n = input.nextInt(); 
-            
-                
-                    for(i = 0; i<n; i++) { 
-                        System.out.print("Masukkan x" + i + ": ");
-                        arrayx[i] = input.nextDouble(); 
-                    }
-                    for(i = 0; i<n; i++) {
-                        System.out.print("Enter the value for y" + i + ": ");
-                        arrayy[i] = input.nextDouble();
-                    }
-                    //Masukkan x yang mau dimasukkan kedalam fungsi
-                    System.out.print("Masukkan X : ");
-                    x = input.nextDouble(); 
-                    
-                    for(i = 0; i<n; i++)
-                    {
-                        kecil = 1; besar = 1;
-                        for(j = 0; j<n; j++)
-                        {
-                            if (j != i)
-                            {
-                            kecil = kecil * (x - arrayx[j]);
-                            besar = besar * (arrayx[i] - arrayx[j]);
-                            }  
-                        }
-                        y = y + (kecil/besar) * arrayy[i];
-                    }
-                    System.out.println("Saat x = " + x + "maka" + " y = " +  y);
+           Scanner input = new Scanner(System.in);
+           
+           int n; 
+           int i, j; 
+           
+           double [] arrayx = new double[200]; //Array limit 199
+           double [] arrayy = new double[200]; //Array limit 199
+           //The arbitrary value, x to be entered for
+           //which the value of y can be known
+           double x = 0; 
+           double y = 0; 
+           double kecil;
+           double besar;  
+   
+           //meminta masukan pengguna
+            System.out.print("Masukkan banyak N :"); 
+            n = input.nextInt(); 
+    
+           
+            for(i = 0; i<n; i++) { 
+                System.out.print("Masukkan x" + i + ": ");
+                arrayx[i] = input.nextDouble(); 
             }
+            for(i = 0; i<n; i++) {
+                System.out.print("Enter the value for y" + i + ": ");
+                arrayy[i] = input.nextDouble();
+            }
+            //Masukkan x yang mau dimasukkan kedalam fungsi
+            System.out.print("Masukkan X : ");
+            x = input.nextDouble(); 
+            
+            for(i = 0; i<n; i++)
+            {
+                kecil = 1; besar = 1;
+                for(j = 0; j<n; j++)
+                {
+                    if (j != i)
+                    {
+                      kecil = kecil * (x - arrayx[j]);
+                      besar = besar * (arrayx[i] - arrayx[j]);
+                    }  
+                }
+                y = y + (kecil/besar) * arrayy[i];
+            }
+            System.out.println("Saat x = " + x + "maka" + " y = " +  y);
         }
     }
 
