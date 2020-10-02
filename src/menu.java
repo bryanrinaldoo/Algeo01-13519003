@@ -134,7 +134,6 @@ public class menu {
     }
 
     public static void Interpolasi() {
-        // TODO: Implement this procedure
         
            Scanner input = new Scanner(System.in);
            
