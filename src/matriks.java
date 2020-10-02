@@ -464,47 +464,51 @@ public class matriks {
     //     ge.solve(A,B);
     // }
 
-    // public matriks gssjrdn(matriks a, matriks b){
-    //     int n = b.length;
-    //     int j;
-    //     double[][] a = new double[n][n];
+    public matriks gssjrdn(matriks a, matriks b){
+        int n = b.length;
+        int j;
+        a = new mat[n][n];
+        b = new mat[n][1];
 
         
-    //     for (int k = 0; k < n; k++){
-    //         //partial pivoting
-    //         if (Math.abs(a[k][k]) < 1.0e-12){
-    //             for (int i = k+1; i<n; i++){
-    //                 if (Math.abs(a[i][k]) > (Math.abs(a[k][k]))){
-    //                     for (j = k; j<n;j++){
-    //                         a[k][j], a[i][j] = a[i][j], a[k][j];
-    //                     }
-    //                     b[k], b[i] = b[i], b[k];
-    //                 }
-    //             }
-    //         }
-    //         //division of row
-    //         int pivot = a[k][k];
-    //         for (j=k; j<n;j++){
-    //             a[k][j] /= pivot;
-    //         }
-    //         b[k] /= pivot;
+        for (int k = 0; k < n; k++){
+            //partial pivoting
+            if (Math.abs(a.a[k][k]) < 1.0e-12){
+                for (int i = k+1; i<n; i++){
+                    if (Math.abs(a.a[i][k]) > (Math.abs(a.a[k][k]))){
+                        for (j = k; j<n;j++){
+                            int temp = a.a[k][j];
+                            a.a[k][j]= a.a[i][j];
+                            a.a[i][j]= temp;
+                        }
+                        int temp = b.b[k];
+                        b.b[k] = b.b[i];
+                        b.b[i] = temp;
+                    }
+                }
+            }
+            //division of row
+            int pivot = a.a[k][k];
+            for (j=k; j<n;j++){
+                a.a[k][j] /= pivot;
+            }
+            b.b[k] /= pivot;
 
-    //         //elimination loop
-    //         for (int i = 0; i<n;i++){
-    //             if ((i==k) || (a[i][k] == 0)){
-    //                 continue;
-    //             }
-    //             int factor = a[i][k];
-    //             for (j=k; j<n; j++){
-    //                 a[i][j] -= factor*a[k][j];
-    //             }
-    //             b[i] -= factor*b[k];
-    //         }
-    //     }
-    //     return b;
-    //     return a;
-    // }
+            //elimination loop
+            for (int i = 0; i<n;i++){
+                if ((i==k) || (a.a[i][k] == 0)){
+                    continue;
+                }
+                int factor = a.a[i][k];
+                for (j=k; j<n; j++){
+                    a.a[i][j] -= factor*a.a[k][j];
+                }
+                b.b[i] -= factor*b.b[k];
+            }
+        }
+        return b;
+        return a;
+    }
     
-
     //end 
 }
