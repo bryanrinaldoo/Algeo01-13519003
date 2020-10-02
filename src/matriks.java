@@ -377,7 +377,7 @@ public class matriks {
                 for (int j = i + 1; j < this.m_brs; j++) {
                     solution[i] -= this.mat[i][j] * solution[j];
                 }
-                solution[i] /= this.mat[i][i];
+                solution[i] /= (this.mat[i][i] != 0.0) ? this.mat[i][i] : 1;
             }
 
             return solution;

@@ -184,117 +184,65 @@ public class menu {
         }
     
 
-    public static void Regresi() throws FileNotFoundException {
+    public static void Regresi() {
 
         int k, n;
         double[] x, xk, solution;
         double y, yk;
 
-        String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nPILIHAN");
-        for (int i = 0; i < subMenuList.length; i++) {
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);
+
+        System.out.print("\nMasukkan jumlah variabel: ");
+        k = input.nextInt();
+
+        System.out.print("Masukkan jumlah data: ");
+        n = input.nextInt();
+
+        System.out.println();
+
+        x = new double[k];
+        for (int i = 0; i < k; i++) {
+            System.out.print("Masukkan nilai X");
             System.out.print(i+1);
-            System.out.print(". ");
-            System.out.println(subMenuList[i]);
+            System.out.print("i: ");
+            x[i] = input.nextDouble();
         }
-        System.out.print("Masukkan pilihan menu: ");
-        int subMenu = scan.nextInt();
-        int currentSubMenu = subMenu;
 
-        scan.close();
+        System.out.print("\nMasukkan nilai Yi: ");
+        y = input.nextDouble();
 
-        switch (currentSubMenu) {
-            case 1:
+        System.out.println();
 
-                Scanner inputf = new Scanner(System.in).useLocale(Locale.US);//Create scanner
-                System.out.println("masukkan nama file : ");
-                String file = inputf.nextLine();
-                matriks M = new matriks(file);
-                M.tulismatriks();
-                MVLR regressionf = new MVLR(M);
-                solution = regressionf.resolve();
-                yk = regressionf.predict();
-
-                System.out.println("\nPersamaan regresi yang terbentuk:");
-                System.out.print("Y");
-                System.out.print(" = ");
-                for (int i = 0; i < solution.length; i++) {
-                    if (solution[i] >= 0 || i != 0) {
-                        System.out.print(" + ");
-                    }
-                    System.out.print(solution[i]);
-                    if (i != 0) {
-                        System.out.print("X");
-                        System.out.print(i);
-                    }
-                }
-
-                System.out.println("\nHasil taksirannya adalah:");
-                System.out.println(yk);
-                break;
-        
-            case 2:
-
-                Scanner input = new Scanner(System.in).useLocale(Locale.US);
-        
-                System.out.print("\nMasukkan jumlah variabel: ");
-                k = input.nextInt();
-        
-                System.out.print("Masukkan jumlah data: ");
-                n = input.nextInt();
-        
-                System.out.println();
-        
-                x = new double[k];
-                for (int i = 0; i < k; i++) {
-                    System.out.print("Masukkan nilai X");
-                    System.out.print(i+1);
-                    System.out.print("i: ");
-                    x[i] = input.nextDouble();
-                }
-        
-                System.out.print("\nMasukkan nilai Yi: ");
-                y = input.nextDouble();
-        
-                System.out.println();
-        
-                xk = new double[k];
-                for (int i = 0; i < k; i++) {
-                    System.out.print("Masukkan nilai X");
-                    System.out.print(i+1);
-                    System.out.print("k yang akan ditaksir: ");
-                    xk[i] = input.nextDouble();
-                }
-        
-                input.close();
-
-                MVLR regression = new MVLR(k, n, x, y, xk);
-                solution = regression.resolve();
-                yk = regression.predict();
-
-                System.out.println("\nPersamaan regresi yang terbentuk:");
-                System.out.print("Y");
-                System.out.print(" = ");
-                for (int i = 0; i < solution.length; i++) {
-                    if (solution[i] >= 0 || i != 0) {
-                        System.out.print(" + ");
-                    }
-                    System.out.print(solution[i]);
-                    if (i != 0) {
-                        System.out.print("X");
-                        System.out.print(i);
-                    }
-                }
-
-                System.out.println("\nHasil taksirannya adalah:");
-                System.out.println(yk);
-                break;
-
-            default:
-                Exit();
-                break;
+        xk = new double[k];
+        for (int i = 0; i < k; i++) {
+            System.out.print("Masukkan nilai X");
+            System.out.print(i+1);
+            System.out.print("k yang akan ditaksir: ");
+            xk[i] = input.nextDouble();
         }
+
+        input.close();
+
+        MVLR regression = new MVLR(k, n, x, y, xk);
+        solution = regression.resolve();
+        yk = regression.predict();
+
+        System.out.println("\nPersamaan regresi yang terbentuk:");
+        System.out.print("Y");
+        System.out.print(" = ");
+        for (int i = 0; i < solution.length; i++) {
+            if (solution[i] >= 0 || i != 0) {
+                System.out.print(" + ");
+            }
+            System.out.print(solution[i]);
+            if (i != 0) {
+                System.out.print("X");
+                System.out.print(i);
+            }
+        }
+
+        System.out.println("\nHasil taksirannya adalah:");
+        System.out.println(yk);
     }
 
     public static void Exit() {
