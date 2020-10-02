@@ -467,10 +467,7 @@ public class matriks {
     public matriks gssjrdn(matriks a, matriks b){
         int n = b.length;
         int j;
-        a = new mat[n][n];
-        b = new mat[n][1];
 
-        
         for (int k = 0; k < n; k++){
             //partial pivoting
             if (Math.abs(a.a[k][k]) < 1.0e-12){
@@ -506,8 +503,7 @@ public class matriks {
                 b.b[i] -= factor*b.b[k];
             }
         }
-        return b;
-        return a;
+        return b,a;
     }
     
     //end 
