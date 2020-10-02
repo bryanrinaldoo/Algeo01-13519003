@@ -19,6 +19,12 @@ public class MVLR {
         insertLastCol(y);
     }
 
+    public MVLR(matriks Mi) {
+        this.M = Mi;
+        this.k = Mi.n_kol - 2;
+        this.n = Mi.m_brs;
+    }
+
     private void insertFirstRow(double[] x) {
         this.M.mat[0][0] = this.n;
         for (int j = 1; j < this.M.n_kol - 1; j++) {

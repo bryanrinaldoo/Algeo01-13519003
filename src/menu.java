@@ -135,21 +135,21 @@ public class menu {
 
     public static void Interpolasi() {
         
-           Scanner input = new Scanner(System.in);
-           
-           int n; 
-           int i, j; 
-           
-           double [] arrayx = new double[200]; //Array limit 199
-           double [] arrayy = new double[200]; //Array limit 199
-           //The arbitrary value, x to be entered for
-           //which the value of y can be known
-           double x = 0; 
-           double y = 0; 
-           double kecil;
-           double besar;  
+            Scanner input = new Scanner(System.in);
+            
+            int n; 
+            int i, j; 
+            
+            double [] arrayx = new double[200]; //Array limit 199
+            double [] arrayy = new double[200]; //Array limit 199
+            //The arbitrary value, x to be entered for
+            //which the value of y can be known
+            double x = 0; 
+            double y = 0; 
+            double kecil;
+            double besar;  
    
-           //meminta masukan pengguna
+            //meminta masukan pengguna
             System.out.print("Masukkan banyak N : "); 
             n = input.nextInt(); 
     
@@ -212,6 +212,26 @@ public class menu {
                 String file = inputf.nextLine();
                 matriks M = new matriks(file);
                 M.tulismatriks();
+                MVLR regressionf = new MVLR(M);
+                solution = regressionf.resolve();
+                yk = regressionf.predict();
+
+                System.out.println("\nPersamaan regresi yang terbentuk:");
+                System.out.print("Y");
+                System.out.print(" = ");
+                for (int i = 0; i < solution.length; i++) {
+                    if (solution[i] >= 0 || i != 0) {
+                        System.out.print(" + ");
+                    }
+                    System.out.print(solution[i]);
+                    if (i != 0) {
+                        System.out.print("X");
+                        System.out.print(i);
+                    }
+                }
+
+                System.out.println("\nHasil taksirannya adalah:");
+                System.out.println(yk);
                 break;
         
             case 2:
@@ -248,34 +268,33 @@ public class menu {
                 }
         
                 input.close();
+
+                MVLR regression = new MVLR(k, n, x, y, xk);
+                solution = regression.resolve();
+                yk = regression.predict();
+
+                System.out.println("\nPersamaan regresi yang terbentuk:");
+                System.out.print("Y");
+                System.out.print(" = ");
+                for (int i = 0; i < solution.length; i++) {
+                    if (solution[i] >= 0 || i != 0) {
+                        System.out.print(" + ");
+                    }
+                    System.out.print(solution[i]);
+                    if (i != 0) {
+                        System.out.print("X");
+                        System.out.print(i);
+                    }
+                }
+
+                System.out.println("\nHasil taksirannya adalah:");
+                System.out.println(yk);
                 break;
 
             default:
                 Exit();
                 break;
         }
-
-        MVLR regression = new MVLR(k, n, x, y, xk);
-        solution = regression.resolve();
-        yk = regression.predict();
-
-        System.out.println("\nPersamaan regresi yang terbentuk:");
-        System.out.print("Y");
-        System.out.print(" = ");
-        for (int i = 0; i < solution.length; i++) {
-            if (solution[i] >= 0 || i != 0) {
-                System.out.print(" + ");
-            }
-            System.out.print(solution[i]);
-            if (i != 0) {
-                System.out.print("X");
-                System.out.print(i);
-            }
-        }
-
-        System.out.println("\nHasil taksirannya adalah:");
-        System.out.println(yk);
-
     }
 
     public static void Exit() {
