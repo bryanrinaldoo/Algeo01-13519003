@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class subMenu  {
-    public static void Inverse() throws FileNotFoundException {
+    public static void SPLInverse() throws FileNotFoundException {
         String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
         Scanner scan = new Scanner(System.in);
         System.out.println("\nPILIHAN");
@@ -16,9 +16,8 @@ public class subMenu  {
             System.out.println(subMenuList[i]);
         }
         System.out.print("Masukkan pilihan menu: ");
-        int subMenuSPL = scan.nextInt();
-
-        int currentSubMenuSPL = subMenuSPL;
+        int subMenu = scan.nextInt();
+        int currentSubMenuSPL = subMenu;
         switch (currentSubMenuSPL) {
             case 1:
             // pake file
@@ -55,7 +54,7 @@ public class subMenu  {
     }
     public static void Cramer() throws FileNotFoundException{
         String[] subMenuList = {"Masukkan dengan File (.txt)", "Masukkan manual"};
-        Scanner scan = new Scanner(System.in);
+        Scanner plh = new Scanner(System.in);
         System.out.println("\nPILIHAN");
         for (int i = 0; i < subMenuList.length; i++) {
             System.out.print(i+1);
@@ -63,7 +62,8 @@ public class subMenu  {
             System.out.println(subMenuList[i]);
         }
         System.out.print("Masukkan pilihan menu: ");
-        int subMenuSPL = scan.nextInt();
+
+        int subMenuSPL = plh.nextInt();
 
         int currentSubMenuSPL = subMenuSPL;
         switch (currentSubMenuSPL) {
@@ -98,7 +98,7 @@ public class subMenu  {
             default:
                 break;
         }
-        scan.close();
+        plh.close();
 
     }
     public static void Gauss() {

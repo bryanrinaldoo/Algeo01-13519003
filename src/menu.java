@@ -18,7 +18,7 @@ public class menu {
 
         System.out.print("Masukkan pilihan sub-menu: ");
         int currentSubMenu = scan.nextInt();
-        scan.close();
+        
 
         switch (currentSubMenu) {
             case 1:
@@ -30,7 +30,7 @@ public class menu {
                 break;
 
             case 3:
-                subMenu.Inverse(); // TODO: Implement this procedure
+                subMenu.SPLInverse(); // TODO: Implement this procedure
                 break;
 
             case 4:
